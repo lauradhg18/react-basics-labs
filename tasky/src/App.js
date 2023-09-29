@@ -1,4 +1,7 @@
 import './App.css';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
 import { v4 as uuidv4 } from 'uuid';
 import AddTaskForm from './components/Form';
 import Task from './components/Task';
@@ -68,7 +71,26 @@ function App() {
 
   return (
     <div className="container">
-    <h1>Tasky</h1>
+    <h1> <Container component="main">
+        <Typography
+          component="h1"
+          variant="h2"
+          align="center"
+          gutterBottom
+          sx = {{
+            backgroundColor: 'gray',
+            textAlign: 'center',
+            color: 'white',
+            padding: '20px',
+            margin: '20px 0 40px 0',
+            borderRadius: '4px'
+          }}
+        >
+          Tasky
+        </Typography>
+      </Container></h1>
+      <Container maxWidth="md" component="main">
+        <Grid container spacing={5} alignItems="flex-top" justifyContent="center">
     {taskState.tasks.map((task, index) => (              
     <Task 
       title={task.title}
@@ -80,7 +102,20 @@ function App() {
       deleteTask = {() => deleteHandler(index)}
     />
   ))} 
-    <AddTaskForm  submit={formSubmitHandler} change={formChangeHandler} />
+   </Grid>
+   </Container>
+   <Container
+        component="footer"
+        sx={{
+          borderTop: (theme) => `1px solid ${theme.palette.divider}`,
+          my: 6,
+          py: 6,
+        }}
+      >
+        <Grid container justifyContent="center">
+          <AddTaskForm submit={formSubmitHandler} change={formChangeHandler} />
+        </Grid>
+      </Container>
     </div>
     
   );
